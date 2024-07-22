@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prediction Result</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #e9ecef;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            max-width: 600px;
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        h1 {
+            margin-bottom: 30px;
+            color: #343a40;
+        }
+
+        p {
+            font-size: 1.25em;
+            color: #495057;
+        }
+
+        .btn-primary {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 1em;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Prediction Result</h1>
+        {% if prediction == 1 %}
+        <p>Based on the provided information, the model predicts that this person might benefit from mental health treatment or might be at risk for mental health issues.</p>
+        {% else %}
+        <p>Based on the provided information, the model predicts that this person is less likely to need mental health treatment at this time.</p>
+        {% endif %}
+        <p>Remember, this is a statistical prediction and should not be considered as a definitive diagnosis. Always consult with a qualified healthcare professional for proper evaluation and advice.</p>
+        <a href="/" class="btn btn-primary">Make another prediction</a>
+    </div>
+</body>
+
+</html>

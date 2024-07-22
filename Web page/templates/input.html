@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mental Health Treatment Predictor</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: url('{{ url_for('static', filename='images/background.png') }}') no-repeat center center fixed;
+            background-size: cover;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            max-width: 600px;
+            background: rgba(255, 255, 255, 0.8);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            margin-bottom: 30px;
+            color: #343a40;
+        }
+
+        form {
+            max-height: 400px;
+            overflow-y: auto;
+            padding-right: 10px;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .btn-primary {
+            background-color: #17a2b8;
+            border-color: #17a2b8;
+        }
+
+        .btn-primary:hover {
+            background-color: #138496;
+            border-color: #117a8b;
+        }
+
+        .text-center {
+            padding-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1 class="text-center">Mental Health Treatment Predictor</h1>
+        <form method="POST">
+            {% for feature in features %}
+            <div class="form-group">
+                <label for="{{ feature }}">{{ feature }}:</label>
+                {% if feature == 'Age' %}
+                <input type="number" class="form-control" id="{{ feature }}" name="{{ feature }}" min="0" max="100"
+                    required>
+                {% elif 'label_' + feature in label_dict %}
+                <select class="form-control" id="{{ feature }}" name="{{ feature }}" required>
+                    {% for option in label_dict['label_' + feature] %}
+                    <option value="{{ option }}">{{ option }}</option>
+                    {% endfor %}
+                </select>
+                {% else %}
+                <input type="number" class="form-control" id="{{ feature }}" name="{{ feature }}" required>
+                {% endif %}
+            </div>
+            {% endfor %}
+            <div class="text-center">
+                <input type="submit" class="btn btn-primary" value="Predict">
+            </div>
+        </form>
+    </div>
+</body>
+
+</html>
